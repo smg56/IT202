@@ -1,4 +1,4 @@
 <?php
 require('config.php');
-echo "Loaded host:" $host;
+echo "Loaded host:" . $host;
 ?>
