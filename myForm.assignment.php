@@ -55,7 +55,7 @@ function validate(){
 </html>
 <?php checkPasswords();?>
 <?php
-if(isset($_GET)){
-	echo "<br><pre>" . var_export($_GET, true) . "</pre><br>";
+if(isset($_POST)){
+	echo "<br><pre>" . var_export($_POST, true) . "</pre><br>";
 }
 ?>
