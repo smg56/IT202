@@ -5,5 +5,5 @@ header("Location: login.php");
 exit(); }
 ?>
 <html>
-<p>the page to redirected to after login</p>
+<p>Welcome to Left4Good</p>
 </html>
