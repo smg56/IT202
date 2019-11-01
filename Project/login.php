@@ -2,7 +2,7 @@
 <html>
 <meta charset="utf-8">
 <title>Login</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <?php
