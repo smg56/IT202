@@ -4,8 +4,6 @@ $database="smg56";//ucid
 $username="smg56";//ucid
 $password="czcW2mym";//mysql password (not ucid password)
 
-// Enter your Host, username, password, database below.
-// I left password empty because i do not set password on localhost.
 
 $con = mysqli_connect("sql1.njit.edu","smg56","czcW2mym","smg56");
 

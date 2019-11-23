@@ -2,13 +2,15 @@
 <?php
 require('db.php');
 include("auth.php");
+session_start();
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>View Records</title>
-<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="form">
@@ -34,11 +36,12 @@ include("auth.php");
 <tbody>
 <?php
 $count=1;
-$sel_query="SELECT * FROM users WHERE id=" . $id;
+$sel_query="SELECT * from `Appointments` WHERE username = '{$_SESSION["username"]}' ";
 $result = mysqli_query($con,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
 <tr><td align="center"><?php echo $count; ?></td>
 <td align="center"><?php echo $row["name"]; ?></td>
+<td align="center"><?php echo $row["username"]; ?></td>
 <td align="center"><?php echo $row["email"]; ?></td>
 <td align="center"><?php echo $row["foodcontent"]; ?></td>
 <td align="center"><?php echo $row["Pickupaddress"]; ?></td>

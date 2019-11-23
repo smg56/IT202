@@ -1,6 +1,7 @@
 <?php
 require('db.php');
 include("auth.php");
+session_start();
 $status = "";
 if(isset($_POST['new']) && $_POST['new']==1){
     $trn_date = date("Y-m-d H:i:s");
@@ -11,12 +12,12 @@ if(isset($_POST['new']) && $_POST['new']==1){
     $Pickupaddress = $_REQUEST['Pickupaddress'];
     $estimatednoofpeople = $_REQUEST['estimatednoofpeople'];
     $Phonenumber =$_REQUEST['Phonenumber'];
-
-    $ins_query="insert into new_records
+    $ins_query="INSERT into `Appointments`
     (`trn_date`,`name`,`username`,`email`,`foodcontent`,`Pickupaddress`,`estimatednoofpeople`, `Phonenumber`)values
     ('$trn_date','$name','$username','$email','$foodcontent','$Pickupaddress','$estimatednoofpeople','$Phonenumber')";
-    mysqli_query($con,$ins_query)
+    $result = mysqli_query($con,$ins_query)
     or die(mysql_error());
+    $_SESSION["username"] = $username;
     $status = "New Record Inserted Successfully.
     </br></br><a href='view.php'>View Inserted Record</a>";
 }
@@ -38,10 +39,10 @@ if(isset($_POST['new']) && $_POST['new']==1){
 <form name="form" method="post" action="">
 <input type="hidden" name="new" value="1" />
 <p><input type="text" name="name" placeholder="Enter Name" required /></p>
-<p><input type="text" name="username" placeholder="Enter username" required /></p>
+<p><input type="text" name="username" placeholder="Enter Username" required /></p>
 <p><input type="email" name="email" placeholder="Enter email address" required /></p>
 <p><input type="text" name="foodcontent" placeholder="Enter the food content" required /></p>
-<p><input type="text" name="foodaddress" placeholder="Enter the Pickup address" required /></p>
+<p><input type="text" name="Pickupaddress" placeholder="Enter the Pickup address" required /></p>
 <p><input type="text" name="estimatednoofpeople" placeholder="Enter no of people to eat" required /></p>
 <p><input type="text" name="Phonenumber" placeholder="Enter Phonenumber" required /></p>
 <p><input name="submit" type="submit" value="Submit" /></p>

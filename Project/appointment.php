@@ -2,6 +2,11 @@
 <?php
 require('db.php');
 include("auth.php");
+session_start();
+echo "Hello, your user name is: " . $_SESSION['username'];
+if(!isset($_SESSION["username"])){
+header("Location: login.php");
+exit(); }
 ?>
 <!DOCTYPE html>
 <html>

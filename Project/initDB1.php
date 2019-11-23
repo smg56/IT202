@@ -8,17 +8,18 @@ require('db.php');
 $conn_string = "mysql:host=$host;dbname=$database;charset=utf8mb4";
 
 try{
-                                                                                                                    $db = newecho "Connected";, $username, $password);
+        $db = new PDO($conn_string, $username, $password);
+        echo "Connected";
         //create table
         $query ="CREATE TABLE IF NOT EXISTS `Appointments` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                `name` varchar(50) NOT NULL,
 		`username` varchar(50) NOT NULL,
-                 `name` varchar(50) NOT NULL,
                 `email` varchar(50) NOT NULL,
                 `foodcontent` varchar(200) NOT NULL,
                 `Pickupaddress` varchar(200) NOT NULL,
                 `estimatednoofpeople` int(11) NOT NULL,
-		`Phonenumber` int(10) NOT NULL,
+                `Phonenumber` int(10) NOT NULL,
                 `trn_date` datetime NOT NULL,
                 PRIMARY KEY (`id`)
                 )CHARACTER SET utf8 COLLATE utf8_general_ci";
@@ -30,12 +31,12 @@ try{
         unset($r);
         //simple insert
         //TODO/homework make values variables bindable
-        $insert_query = "INSERT INTO `Appointments`(`username`, `name`, `id`, `email`, `estimatednoofpeople` ,`Phonenumber`, `foodcontent`,`Pickupaddress`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $insert_query = "INSERT INTO `Appointments`( 'name', `username`, 'id', 'email','trn_date', 'foodcontent', 'Pickupaddress', 'estimatednoofpeople', 'Phonenumber')
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($insert_query);
         //TODO catch error from DB
 
         //TODO select query using bindable :username is where clause
-
         //select * from TestUsers where username =
 }
 catch(Exception $e){
