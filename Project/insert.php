@@ -52,7 +52,7 @@ left: 40%;
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
   width: 100%;
-height: 750px;
+height: 900px;
 padding: 20px;
 }
 </style>
