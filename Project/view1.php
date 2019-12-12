@@ -1,14 +1,10 @@
 <?php
-session_start();
-echo "Hello, your user name is: " . $_SESSION['username'];
-if(!isset($_SESSION["username"])){
-header("Location: login.php");
-exit(); }
-?>
-<?php
-//include auth.php file on all secure pages
+require('db.php');
 include("auth.php");
+session_start();
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,37 +30,56 @@ body {
 
 .form {
 position: fixed;
-text-align: center;
-top: 25%;
-left: 40%;
-background: rgba(0, 0, 0, 0.5);
-color: #f1f1f1;
-width: 25%;
-height: 500px;
-padding: 20px
-font family: monospace;
-top: 150px;
+top: 0%;
+left: 0%;
+
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+height: 1000px;
+padding: 20px;
 }
-.form h1
+.form h1:hover
 {
 font-size: 20px;
+color: #fff;
+padding: 7px 22px;
+text-decoration: none;
+border: 1px solid coral;
+border-radius: 25px;
 font-weight: 100;
 letter-spacing: 5px;
+background: coral;
 margin-bottom: 30px;
+transition: .5s;
 }
-.form h2
+.form h2:hover
 {
 font-size: 20px;
+color: #fff;
+padding: 7px 22px;
+text-decoration: none;
+border: 1px solid coral;
+border-radius: 25px;
 font-weight: 100;
 letter-spacing: 5px;
+background: coral;
 margin-bottom: 30px;
+transition: .5s;
 }
-.form h3
+.form h3:hover
 {
 font-size: 20px;
+color: #fff;
+padding: 7px 22px;
+text-decoration: none;
+border: 1px solid coral;
+border-radius: 25px;
 font-weight: 100;
 letter-spacing: 5px;
+background: coral;
 margin-bottom: 30px;
+transition: .5s;
 }
 .form h4:hover
 {
@@ -80,60 +95,13 @@ background: coral;
 margin-bottom: 30px;
 transition: .5s;
 }
-.form h5:hover
-{
-font-size: 20px;
-color: #fff;
-padding: 7px 22px;
-text-decoration: none;
-border: 1px solid coral;
-border-radius: 25px;
-font-weight: 100;
-letter-spacing: 5px;
-background: coral;
-margin-bottom: 30px;
-transition: .5s;
-}
-
-.form h6:hover
-{
-font-size: 20px;
-color: #fff;
-padding: 7px 22px;
-text-decoration: none;
-border: 1px solid coral;
-border-radius: 25px;
-font-weight: 100;
-letter-spacing: 5px;
-background: coral;
-margin-bottom: 30px;
-transition: .5s;
-}
-.form h7:hover
-{
-font-size: 20px;
-color: #fff;
-padding: 7px 22px;
-text-decoration: none;
-border: 1px solid coral;
-border-radius: 25px;
-font-weight: 100;
-letter-spacing: 5px;
-background: coral;
-margin-bottom: 30px;
-transition: .5s;
-}
-
 </style>
 </head>
 
-
 <html>
 <head>
-
 <meta charset="utf-8">
-<title>Welcome to Left4Good</title>
-<link rel="stylesheet" href="style.css" />
+<title>View Records</title>
 </head>
 <body>
 <video autoplay muted loop id="myVideo">
@@ -141,13 +109,46 @@ transition: .5s;
   Your browser does not support HTML5 video.
 </video>
 <div class="form">
-<h1>Welcome <?php echo $_SESSION['username']; ?>!</h1>
-<h2>Welcome to Left4Good</h2>
-<h3>Your consistant support can save lives.</h3>
-<h4><a href="appointment.php">Food Pickup Appointment</a></h4>
-<h5> <a href="volunteer1.php">Volunteer Form</a></h5>
-<h7> <a href="view1.php"> View Availability</a></h7>
-<h6> <a href="logout.php">Logout</a></h6>
+<h1><a href="index.php">Home</a></h1>
+<h2><a href="insert.php">Create New Appointment</a></h2>
+<h3><a href="logout.php">Logout</a></h3>
+<h4>View Records</h4>
+<table width="100%" border="1" style="border-collapse:collapse;">
+<thead>
+<tr>
+<th><strong>S.No</strong></th>
+<th><strong>Name</strong></th>
+<th><strong>username</strong></th>
+<th><strong>Email</strong></th>
+<th><strong>Availability</th>
+<th><strong>Phone Number</strong></th>
+<th><strong>Edit</strong></th>
+<th><strong>Delete</strong></th>
+</tr>
+</thead>
+<tbody>
+<?php
+$count=1;
+$sel_query="SELECT * from `vol2` WHERE username = '{$_SESSION["username"]}' ";
+$result = mysqli_query($con,$sel_query);
+while($row = mysqli_fetch_assoc($result)) { ?>
+<tr><td align="center"><?php echo $count; ?></td>
+<td align="center"><?php echo $row["name"]; ?></td>
+<td align="center"><?php echo $row["username"]; ?></td>
+<td align="center"><?php echo $row["email"]; ?></td>
+<td align="center"><?php echo $row["Availability"]; ?></td>
+<td align="center"><?php echo $row["Phonenumber"]; ?></td>
+<td align="center">
+<a href="edit1.php?id=<?php echo $row["id"]; ?>">Edit</a>
+</td>
+<td align="center">
+<a href="delete1.php?id=<?php echo $row["id"]; ?>">Delete</a>
+</td>
+</tr>
+<?php $count++; } ?>
+</tbody>
+</table>
 </div>
 </body>
 </html>
+

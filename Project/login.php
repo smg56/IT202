@@ -32,7 +32,7 @@ left: 40%;
 
   background: rgba(0, 0, 0, 0.5);
   color: #f1f1f1;
-  width: 25%;
+  width: 20%;
 height: 420px;
 padding: 20px;
 }

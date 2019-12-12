@@ -162,6 +162,14 @@ if (isset($_REQUEST['username'])){
 	    $query = "INSERT into `users1` (username, password, email, trn_date)
         VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
         $result = mysqli_query($con,$query);
+$to = "$email";
+$subject = "Test mail";
+$message = "Hello! $username, Welcome to Left4Good. Thank you for registering and helping community.";
+$from = "shubhamgohela5@gmail.com";
+$headers = "From:" . $from;
+
+mail($to,$subject,$message,$headers);
+
 //        header("Location: index.php");           
            echo" <div class='form1'>
             <h3>You are registered successfully.</h3>
